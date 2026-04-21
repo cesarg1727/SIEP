@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema Integrado de Evaluación Psicológica (SIEP) - Universidad (Pendiente de comunicar)">
+    <title>SIEP · Sistema Integrado de Evaluación Psicológica</title>
+
+    <!-- Tipografía institucional (similar al sitio UDLA) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           PALETA INSTITUCIONAL UDLA
+           Rojo oficial: #E30613
+           ============================================ */
+        :root {
+            --udla-red: #E30613;
+            --udla-red-dark: #A8040F;
+            --udla-red-soft: #FBE9EB;
+            --udla-black: #1A1A1A;
+            --udla-gray: #555555;
+            --udla-gray-light: #8A8A8A;
+            --udla-bg: #F6F6F6;
+            --udla-border: #E5E5E5;
+            --udla-white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--udla-black);
+            background: var(--udla-white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+           BARRA SUPERIOR
+           ============================================ */
+        .top-bar {
+            background: var(--udla-black);
+            color: var(--udla-white);
+            padding: 10px 0;
+            font-size: 0.82rem;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar .left { opacity: 0.85; }
+        .top-bar .right { display: flex; gap: 20px; opacity: 0.9; }
+
+        /* ============================================
+           HEADER PRINCIPAL
+           ============================================ */
+        header.main-header {
+            background: var(--udla-white);
+            border-bottom: 4px solid var(--udla-red);
+            padding: 22px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header.main-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .brand-mark {
+            width: 58px;
+            height: 58px;
+            background: var(--udla-red);
+            color: var(--udla-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 1.5px;
+            flex-shrink: 0;
+        }
+        .brand-text h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--udla-black);
+            line-height: 1.2;
+        }
+        .brand-text p {
+            font-size: 0.82rem;
+            color: var(--udla-gray);
+            margin-top: 2px;
+        }
+        nav.main-nav {
+            display: flex;
+            gap: 28px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        nav.main-nav a {
+            color: var(--udla-gray);
+            transition: color 0.2s;
+        }
+        nav.main-nav a:hover { color: var(--udla-red); }
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            background: linear-gradient(135deg, var(--udla-red) 0%, var(--udla-red-dark) 100%);
+            color: var(--udla-white);
+            padding: 90px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            right: -100px;
+            top: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            left: -80px;
+            bottom: -80px;
+            width: 260px;
+            height: 260px;
+            background: rgba(0,0,0,0.08);
+            border-radius: 50%;
+        }
+        .hero .container { position: relative; z-index: 1; }
+        .hero .eyebrow {
+            display: inline-block;
+            font-size: 0.78rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding: 6px 14px;
+            border: 1px solid rgba(255,255,255,0.35);
+            margin-bottom: 24px;
+        }
+        .hero h2 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            max-width: 820px;
+        }
+        .hero .subtitle {
+            font-size: 1.15rem;
+            max-width: 720px;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        /* ============================================
+           SECCIÓN APPS
+           ============================================ */
+        section.apps {
+            padding: 90px 0;
+            background: var(--udla-bg);
+        }
+        .section-title { margin-bottom: 48px; }
+        .section-title .divider {
+            width: 52px;
+            height: 4px;
+            background: var(--udla-red);
+            margin-bottom: 18px;
+        }
+        .section-title h3 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--udla-black);
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        .section-title p {
+            color: var(--udla-gray);
+            max-width: 720px;
+            font-size: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: var(--udla-white);
+            border: 1px solid var(--udla-border);
+            border-top: 4px solid var(--udla-red);
+            padding: 32px 28px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 340px;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.09);
+        }
+        .card .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--udla-red);
+            background: var(--udla-red-soft);
+            padding: 5px 10px;
+            margin-bottom: 18px;
+            align-self: flex-start;
+            text-transform: uppercase;
+        }
+        .card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--udla-black);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .card p {
+            color: var(--udla-gray);
+            font-size: 0.92rem;
+            flex-grow: 1;
+            margin-bottom: 22px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: var(--udla-red);
+            color: var(--udla-white);
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: background 0.2s, gap 0.2s;
+            align-self: stretch;
+        }
+        .btn:hover {
+            background: var(--udla-red-dark);
+            gap: 14px;
+        }
+        .btn .arrow { font-size: 1.1rem; }
+
+        /* Tarjeta placeholder (Próximamente) */
+        .card.placeholder {
+            border-top-color: var(--udla-gray-light);
+            background: transparent;
+            border-style: dashed;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--udla-gray-light);
+        }
+        .card.placeholder:hover { transform: none; box-shadow: none; }
+        .card.placeholder .icon { font-size: 2rem; margin-bottom: 10px; }
+        .card.placeholder h4 { color: var(--udla-gray); }
+        .card.placeholder p { color: var(--udla-gray-light); font-size: 0.85rem; }
+
+        /* ============================================
+           INFO
+           ============================================ */
+        .info {
+            padding: 90px 0;
+            background: var(--udla-white);
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 40px;
+        }
+        .info-item { border-left: 3px solid var(--udla-red); padding-left: 20px; }
+        .info-item h4 {
+            font-size: 1.05rem;
+            color: var(--udla-black);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .info-item p { color: var(--udla-gray); font-size: 0.95rem; }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--udla-black);
+            color: var(--udla-white);
+            padding: 56px 0 24px;
+        }
+        footer .footer-top {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-bottom: 36px;
+        }
+        footer .brand-mark {
+            background: var(--udla-white);
+            color: var(--udla-red);
+        }
+        footer .brand-text h1 { color: var(--udla-white); }
+        footer .brand-text p { color: rgba(255,255,255,0.65); }
+        footer .footer-info { max-width: 400px; font-size: 0.88rem; opacity: 0.75; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.12);
+            padding-top: 22px;
+            font-size: 0.82rem;
+            opacity: 0.6;
+            text-align: center;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            .hero { padding: 60px 0; }
+            .hero h2 { font-size: 1.9rem; }
+            .hero .subtitle { font-size: 1rem; }
+            section.apps, .info { padding: 60px 0; }
+            .section-title h3 { font-size: 1.5rem; }
+            nav.main-nav { display: none; }
+            .top-bar .right { display: none; }
+            .brand-text h1 { font-size: 0.92rem; }
+            .brand-text p { font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra superior -->
+    <div class="top-bar">
+        <div class="container">
+            <span class="left">Universidad (pendiente de consulta) · Ecuador</span>
+            <div class="right">
+                <span>Plataforma de evaluación</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <a href="#inicio" class="brand">
+                <div class="brand-mark">SIEP</div>
+                <div class="brand-text">
+                    <h1>Sistema Integrado de Evaluación Psicológica</h1>
+                    <p>Universidad (Pendiente de comunicar)</p>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <a href="#inicio">Inicio</a>
+                <a href="#instrumentos">Instrumentos</a>
+                <a href="#acerca">Acerca del SIEP</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <span class="eyebrow">SIEP · Plataforma Integrada</span>
+            <h2>Evaluación psicológica al alcance de la comunidad</h2>
+            <p class="subtitle">
+                Un hub centralizado que reúne instrumentos y pruebas psicológicas desarrollados con R y Shiny,
+                diseñado para facilitar el acceso y la aplicación.
+            </p>
+        </div>
+    </section>
+
+    <!-- Apps disponibles -->
+    <section class="apps" id="instrumentos">
+        <div class="container">
+            <div class="section-title">
+                <div class="divider"></div>
+                <h3>Instrumentos disponibles</h3>
+                <p>Seleccione la aplicación que desea utilizar; cada una se abrirá en una nueva pestaña para no interrumpir su navegación. Le recordamos que las respuestas ingresadas en la plataforma serán almacenadas de forma completamente anónima. No se registrará su dirección IP ni ningún otro dato que permita su identificación personal.
+
+Los datos recolectados se utilizarán exclusivamente para continuar con la validación de los instrumentos y mantener los baremos actualizados. El uso de estas puntuaciones con fines de investigación cuenta con la aprobación del CEISH-UDLA, bajo el proyecto: “Validación y Análisis Psicométrico de Escalas Psicológicas de Acceso Abierto para el Contexto Ecuatoriano” (Código: 2025-EXC-001).</p>
+            </div>
+            <div class="grid" id="apps-grid">
+                <!-- Las tarjetas se generan automáticamente desde el arreglo JS de abajo -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Información -->
+    <section class="info" id="acerca">
+        <div class="container">
+            <div class="section-title">
+                <div class="divider"></div>
+                <h3>Acerca del SIEP</h3>
+            </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h4>Propósito académico</h4>
+                    <p>Centralizar instrumentos de evaluación psicológica construidos con R y Shiny para agilizar su uso en docencia e investigación.</p>
+                </div>
+                <div class="info-item">
+                    <h4>Uso responsable</h4>
+                    <p>Las pruebas aquí alojadas están orientadas a fines académicos. Su interpretación clínica requiere criterio profesional y formación específica.</p>
+                </div>
+                <div class="info-item">
+                    <h4>Crecimiento continuo</h4>
+                    <p>El SIEP incorporará progresivamente nuevos instrumentos, recursos y documentación a medida que avance el desarrollo del proyecto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="brand">
+                    <div class="brand-mark">SIEP</div>
+                    <div class="brand-text">
+                        <h1>Sistema Integrado de Evaluación Psicológica</h1>
+                        <p>Universidad (Pendiente de comunicar)</p>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    Plataforma académica para el alojamiento centralizado de instrumentos psicológicos.
+                    Desarrollado con R y Shiny, hospedado mediante shinyapps.io.
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © <span id="year"></span> SIEP · Universidad (Pendiente de comunicar) · Ecuador
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // =====================================================
+        //  CONFIGURACIÓN DE APLICACIONES
+        //  Para añadir, quitar o editar apps en el futuro,
+        //  modifique únicamente este arreglo. Puede tener 3, 4, 8, 20…
+        //  Si quiere una tarjeta "Próximamente", use tipo: "placeholder".
+        // =====================================================
+        const apps = [
+            {
+                etiqueta: "Test PANAS",
+                nombre: "Escala de Afecto Positivo y Negativo",
+                descripcion: "El test PANAS mide las dimensiones de Afecto Positivo y Afecto Negativo como estados independientes. Su utilidad principal radica en evaluar el bienestar subjetivo, permitiendo distinguir entre la presencia de energía y optimismo frente al malestar emocional o la angustia.",
+                url: "https://5lnpzo-cesar-parra.shinyapps.io/PANAS/"
+            },
+            {
+                etiqueta: "Test MAS",
+                nombre: "Test Ansiedad de Taylor",
+                descripcion: "El Manifest Anxiety Scale (MAS) de Taylor mide la ansiedad como rasgo de personalidad, evaluando la propensión general de un individuo a responder con tensión o nerviosismo ante diversas situaciones.",
+                url: "https://5lnpzo-cesar-parra.shinyapps.io/Taylor_test/"
+            },
+            {
+                etiqueta: "GDS",
+                nombre: "Escala de Depresión Geriátrica",
+                descripcion: "La Escala de Depresión Geriátrica (GDS) mide síntomas depresivos mediante items dicotómicos que facilita la evaluación de estados afectivos. Aunque fue diseñada para la tercera edad, su estructura permite detectar eficazmente la depresión en adultos menores de 60 años, especialmente cuando se busca evitar el sesgo de síntomas somáticos. Su utilidad radica en ser un tamizaje rápido y fiable para identificar el riesgo clínico en diversas etapas de la adultez.",
+                url: "https://5lnpzo-cesar-parra.shinyapps.io/Cribado_depresion_GDS/"
+            },
+            {
+                etiqueta: "BSMAS",
+                nombre: "Bergen Social Media Addiction Scale",
+                descripcion: "La Bergen Social Media Addiction Scale (BSMAS) mide el grado de adicción a las redes sociales basándose en componentes como la prominencia, cambios de humor y conflicto. Su utilidad principal es identificar comportamientos de uso problemático y riesgo de dependencia digital en entornos clínicos y académicos.",
+                url: "https://5lnpzo-cesar-parra.shinyapps.io/BSMS/"
+            }
+            // --- EJEMPLO para agregar una nueva app en el futuro ---
+            // ,{
+            //     etiqueta: "Instrumento 05",
+            //     nombre: "Nueva Prueba",
+            //     descripcion: "Descripción breve.",
+            //     url: "https://tu-usuario.shinyapps.io/app5/"
+            // }
+            // --- EJEMPLO de tarjeta "Próximamente" ---
+            // ,{
+            //     tipo: "placeholder",
+            //     nombre: "Próximamente",
+            //     descripcion: "Nuevo instrumento en desarrollo"
+            // }
+        ];
+
+        // Renderiza las tarjetas a partir del arreglo
+        const grid = document.getElementById('apps-grid');
+        apps.forEach(app => {
+            const card = document.createElement('div');
+            if (app.tipo === "placeholder") {
+                card.className = 'card placeholder';
+                card.innerHTML = `
+                    <div class="icon">+</div>
+                    <h4>${app.nombre || 'Próximamente'}</h4>
+                    <p>${app.descripcion || 'Nuevo instrumento en desarrollo'}</p>
+                `;
+            } else {
+                card.className = 'card';
+                card.innerHTML = `
+                    <span class="tag">${app.etiqueta}</span>
+                    <h4>${app.nombre}</h4>
+                    <p>${app.descripcion}</p>
+                    <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="btn">
+                        <span>Acceder al instrumento</span>
+                        <span class="arrow">→</span>
+                    </a>
+                `;
+            }
+            grid.appendChild(card);
+        });
+
+        // Año dinámico en footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
